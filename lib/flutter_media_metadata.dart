@@ -19,8 +19,6 @@ class MetadataRetriever {
       ).timeout(timeout);
       return _Metadata.fromJson(metadata);
     } catch (exception, stacktrace) {
-      print(exception.toString());
-      print(stacktrace.toString());
       return _Metadata.fromJson(
         {
           'uri': uri.toString(),
@@ -32,7 +30,7 @@ class MetadataRetriever {
 
 class _Metadata {
   final String? trackName;
-  final List<String>? trackArtistNames;
+  final String? trackArtistNames;
   final String? albumName;
   final String? albumArtistName;
   final int? trackNumber;
@@ -67,7 +65,7 @@ class _Metadata {
 
   factory _Metadata.fromJson(dynamic map) => _Metadata(
         trackName: map['trackName'],
-        trackArtistNames: map['trackArtistNames']?.split('/'),
+        trackArtistNames: map['trackArtistNames'],
         albumName: map['albumName'],
         albumArtistName: map['albumArtistName'],
         trackNumber: _parse(map['trackNumber']),
